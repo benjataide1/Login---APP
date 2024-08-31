@@ -1,8 +1,15 @@
 package org.myapp.login.logic.entities;
 
+import javax.persistence.*;
+
+@Entity
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+    @Basic
     private String user;
     private String password;
 
@@ -28,6 +35,14 @@ public class User {
 
     public void setUser(String user) {
         this.user = user;
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override
