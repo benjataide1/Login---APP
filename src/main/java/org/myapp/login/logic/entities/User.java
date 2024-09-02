@@ -13,6 +13,12 @@ public class User {
     private String user;
     private String password;
 
+    //! Hago referencia ami Entity Rol para saber en mi BD a que hago referencia
+    @ManyToOne
+    @JoinColumn(name = "FK_Rol") //! 'FK_Rol' es la columna en mi BD ,donde hace referencia a cada Rol
+    private Rol oneRol; // oneRol por que N users tiene 1 Rol
+
+
     public User() {
     }
 

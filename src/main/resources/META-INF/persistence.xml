@@ -2,6 +2,7 @@
     <persistence-unit name="myUnity">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>org.myapp.login.logic.entities.User</class>  <!-- Reemplaza con tus entidades -->
+        <class>org.myapp.login.logic.entities.Rol</class>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
