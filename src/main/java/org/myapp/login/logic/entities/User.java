@@ -51,6 +51,14 @@ public class User {
         this.id = id;
     }
 
+    public Rol getOneRol() {
+        return oneRol;
+    }
+
+    public void setOneRol(Rol oneRol) {
+        this.oneRol = oneRol;
+    }
+
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("User{");

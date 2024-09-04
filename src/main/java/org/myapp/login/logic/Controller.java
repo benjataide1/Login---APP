@@ -8,29 +8,20 @@ public class Controller {
 
     ControllerPersistence controllerPersistence = new ControllerPersistence();
 
-    public String valideUser(String user, String password) {
-
+    public User valideUser(String user, String password) {
         List<User> users = controllerPersistence.findUserEntities();
-        String mes = "";
 
         for (User s : users) {
-
             if (s.getUser().equals(user)) {
-
                 if (s.getPassword().equals(password)) {
-                    mes = "User and Password Correct";
-                    return mes;
+                    return s; // Usuario encontrado, devolverlo
                 } else {
-                    mes = "Password incorrect";
-                    return mes;
+                    return null; // El nombre de usuario coincide, pero la contraseña es incorrecta
                 }
-            } else {
-                mes = "User and Password Incorrect";
             }
-
         }
 
-        return mes;
-
+        return null; // Si no se encontró ningún usuario con el nombre de usuario y la contraseña dados
     }
+
 }
