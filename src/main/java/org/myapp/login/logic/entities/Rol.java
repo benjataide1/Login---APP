@@ -59,4 +59,15 @@ public class Rol {
     public void setNameRol(String nameRol) {
         this.nameRol = nameRol;
     }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Rol{");
+        sb.append("description='").append(description).append('\'');
+        sb.append(", id=").append(id);
+        sb.append(", nameRol='").append(nameRol).append('\'');
+        sb.append(", users=").append(users);
+        sb.append('}');
+        return sb.toString();
+    }
 }

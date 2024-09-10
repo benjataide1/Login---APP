@@ -42,49 +42,46 @@ public class MainController {
 
         User us = controller.valideUser(user, password);
 
-        if (us != null ) {
+        if (us != null) {
 
-            String rol =  us.getOneRol().getNameRol();
+            String rol = us.getOneRol().getNameRol();
+            FXMLLoader loader = null;
+            Parent root = null;
 
             if (rol.equalsIgnoreCase("admin")) {
 
-                Stage stage = null;
-                Parent root = null;
+                loader = new FXMLLoader(getClass().getResource("/org/myapp/login/mainAdmin-view.fxml"));
+                root = loader.load(); // Carga el nuevo FXML
 
-                // Obtén la referencia al botón
-                stage = (Stage) btnLogin.getScene().getWindow();
+                // Obtén el controlador del archivo FXML cargado
+                MainAdminController mainAdminController = loader.getController();
+                mainAdminController.setTxtLabel("admin"); // Pasar el nombre del usuario
 
-                // Carga el nuevo FXML
-                root = FXMLLoader.load(getClass().getResource("/org/myapp/login/mainAdmin-view.fxml"));
 
+            } else if (rol.equals("user")) {
+
+                loader = new FXMLLoader(getClass().getResource("/org/myapp/login/mainUser-view.fxml"));
+                root = loader.load(); // Carga el nuevo FXML
+
+                // Obtén el controlador del archivo FXML cargado
+                MainUserController mainUserController = loader.getController();
+                mainUserController.setTxtLabel(user); // Pasar el nombre del usuario
+
+            }
+
+            if (root != null) {
+                Stage stage = (Stage) btnLogin.getScene().getWindow();
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
-
-
-
-            } if (rol.equals("user")) {
-
-                Stage stage = null;
-                Parent root = null;
-
-                // Obtén la referencia al botón
-                stage = (Stage) btnLogin.getScene().getWindow();
-
-                // Carga el nuevo FXML
-                root = FXMLLoader.load(getClass().getResource("/org/myapp/login/mainUser-view.fxml"));
-
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
+            } else {
+                txtArea.setText("User or Password Incorrect");
 
 
             }
-        } else {
-            txtArea.setText("User or Password Incorrect");
+
+
         }
 
     }
-
-
 }

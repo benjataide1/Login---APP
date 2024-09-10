@@ -22,9 +22,10 @@ public class User {
     public User() {
     }
 
-    public User(String password, String user) {
-        this.password = password;
+    public User(String user, String password, Rol oneRol) {
         this.user = user;
+        this.password = password;
+        this.oneRol = oneRol;
     }
 
     public String getPassword() {
@@ -55,9 +56,14 @@ public class User {
         return oneRol;
     }
 
+    public String getNameRol(){
+        return this.oneRol.getNameRol();
+    }
+
     public void setOneRol(Rol oneRol) {
         this.oneRol = oneRol;
     }
+
 
     @Override
     public String toString() {

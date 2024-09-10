@@ -100,8 +100,8 @@ public class RolController {
     private List<Rol> findRolEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
-            CriteriaQuery<User> cq = em.getCriteriaBuilder().createQuery(User.class);
-            cq.select(cq.from(User.class));
+            CriteriaQuery<Rol> cq = em.getCriteriaBuilder().createQuery(Rol.class);
+            cq.select(cq.from(Rol.class));
             javax.persistence.Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
