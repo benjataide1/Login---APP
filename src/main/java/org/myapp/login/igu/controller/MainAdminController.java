@@ -31,21 +31,14 @@ public class MainAdminController implements Initializable {
 
     public Controller controller = new Controller();
     public Button btnCreateUser;
+    public Button btUpdate;
 
-    public void setTxtLabel(String newUser) {
-        txtLabel.setText(newUser);
-    }
-
-    public void btnExit(ActionEvent actionEvent) {
-        Stage stage = (Stage) btnExit.getScene().getWindow();
-        // Cerrar el Stage
-        stage.close();
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         table();
     }
+
 
     public void table() {
         tableView.getItems().clear();
@@ -64,8 +57,18 @@ public class MainAdminController implements Initializable {
 
     }
 
+    public void setTxtLabel(String newUser) {
+        txtLabel.setText(newUser);
+    }
 
-    public void btnCreate(ActionEvent actionEvent) throws IOException {
+    public void btnExit(ActionEvent actionEvent) {
+        Stage stage = (Stage) btnExit.getScene().getWindow();
+        // Cerrar el Stage
+        stage.close();
+    }
+
+
+    public void btnCreate(ActionEvent actionEvent) {
 
         Stage stage = null;
         Parent root = null;
@@ -87,16 +90,16 @@ public class MainAdminController implements Initializable {
 
     public void btnDelete(ActionEvent actionEvent) {
 
-       if( tableView.getItems().stream().count() != 0 ){
+        if (tableView.getItems().stream().count() != 0) {
 
-           User user = (User) tableView.getSelectionModel().getSelectedItem();
+            User user = (User) tableView.getSelectionModel().getSelectedItem();
 
-           controller.deleteUser(user.getId());
-           showMessage("User Delete successfully", "Info", "Delete successfully");
-           table();
-       }else {
-           showMessage("Error With Delete User", "Error", "Error with Delete");
-       }
+            controller.deleteUser(user.getId());
+            showMessage("User Delete successfully", "Info", "Delete successfully");
+            table();
+        } else {
+            showMessage("Error With Delete User", "Error", "Error with Delete");
+        }
 
 
     }
@@ -111,6 +114,64 @@ public class MainAdminController implements Initializable {
         JDialog dialog = optionPane.createDialog(title);
         dialog.setAlwaysOnTop(true);
         dialog.setVisible(true);
+    }
+
+    public void btnUpdate(ActionEvent actionEvent) {
+
+        if (tableView.getItems().stream().count() != 0) {
+
+            User user = (User) tableView.getSelectionModel().getSelectedItem();
+
+
+            //Carga otra vista
+
+            if (user != null) {
+
+                Stage stage = null;
+                Parent root = null;
+
+                try {
+                    // Obtén la referencia al botón
+                    stage = (Stage) btUpdate.getScene().getWindow();
+
+                    // Configurar el FXMLLoader
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/myapp/login/updateUser-view.fxml"));
+
+                    // Cargar el nuevo FXML
+                    root = loader.load();
+
+                    // Obtener el controlador asociado al FXML
+                    UpdateUserController controller = loader.getController();
+                    System.out.println(user.getId());
+
+                    // Pasar el ID del automóvil al controlador
+                    controller.findUser(user.getId());
+
+                    // Opción alternativa: pasar el objeto Automovil completo
+                    // controller.setAutomovil(selectedAutomovil);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+
+                // Configurar la escena y mostrarla
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+
+            } else {
+                showMessage("Is Empty", "Error", "Error When Updating");
+            }
+        }
+
+
+    }
+
+    public void btnReload(ActionEvent actionEvent) {
+        table();
+
     }
 }
 

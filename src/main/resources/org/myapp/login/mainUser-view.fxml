@@ -30,7 +30,7 @@
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
             </columnResizePolicy>
         </TableView>
-        <Button layoutX="656.0" layoutY="128.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="126.0" text="Reload Table">
+        <Button layoutX="656.0" layoutY="128.0" mnemonicParsing="false" onAction="#btnReload" prefHeight="52.0" prefWidth="126.0" text="Reload Table">
             <font>
                 <Font name="Segoe UI Black" size="15.0" />
             </font>

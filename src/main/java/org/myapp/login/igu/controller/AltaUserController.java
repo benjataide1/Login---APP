@@ -1,7 +1,10 @@
 package org.myapp.login.igu.controller;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
@@ -10,16 +13,17 @@ import javafx.stage.Stage;
 import org.myapp.login.logic.Controller;
 
 import javax.swing.*;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AltaUserController implements Initializable {
     public Button btnExit;
-    public Button btnClean;
     public PasswordField txtPassword;
     public ComboBox cmbRol;
     public TextField txtUserName;
+    public Button btnSave;
 
     Controller controller = new Controller();
 
@@ -28,7 +32,6 @@ public class AltaUserController implements Initializable {
 
         txtPassword.setText("");
         txtUserName.setText("");
-        cmbRol.setValue(null);
     }
 
 
@@ -41,6 +44,31 @@ public class AltaUserController implements Initializable {
         controller.save(userName,password,rol);
 
         showMessage("Create Succesfully","Info","User Create");
+
+        Stage stage = null;
+        Parent root = null;
+        FXMLLoader loader = null;
+
+
+        try {
+            // Obtén la referencia al botón
+            stage = (Stage) btnSave.getScene().getWindow();
+
+            // Carga el nuevo FXML
+            loader = new FXMLLoader(getClass().getResource("/org/myapp/login/mainAdmin-view.fxml"));
+            root = loader.load(); //
+
+            // Obtén el controlador del archivo FXML cargado
+            MainAdminController mainAdminController = loader.getController();
+            mainAdminController.setTxtLabel("admin"); //
+
+        } catch (IOException e) {
+            e.getMessage();
+        }
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
 
     }
 

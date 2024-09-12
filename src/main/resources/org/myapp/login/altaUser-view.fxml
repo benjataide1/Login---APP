@@ -38,7 +38,7 @@
             <Font name="Segoe UI Black" size="15.0" />
          </font>
       </Button>
-      <Button fx:id="btnClean" layoutX="257.0" layoutY="284.0" mnemonicParsing="false" onAction="#Save" prefHeight="52.0" prefWidth="126.0" text="Save">
+      <Button fx:id="btnSave" layoutX="257.0" layoutY="284.0" mnemonicParsing="false" onAction="#Save" prefHeight="52.0" prefWidth="126.0" text="Save">
          <font>
             <Font name="Segoe UI Black" size="15.0" />
          </font>

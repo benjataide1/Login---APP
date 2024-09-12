@@ -29,4 +29,16 @@ public class ControllerPersistence {
     public void deleteUser(int id) {
         controller.destroy(id);
     }
+
+    public User findUser(int id) {
+
+        return controller.findUser(id);
+    }
+
+
+    public void updateUser(User user1) throws Exception {
+
+        controller.edit(user1);
+    }
+
 }

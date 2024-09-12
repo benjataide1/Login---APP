@@ -67,4 +67,22 @@ public class Controller {
     public void deleteUser(int id) {
         controllerPersistence.deleteUser(id);
     }
+
+    public User findUser(int id) {
+        return controllerPersistence.findUser(id);
+    }
+
+    public void editUser(int id, String password, String user, String rol) throws Exception {
+
+        User user1 = findUser(id);
+        Rol rol1 = findRol(rol);
+
+        if (user1 != null) {
+            user1.setUser(user);
+            user1.setPassword(password);
+            user1.setOneRol(rol1);
+
+            controllerPersistence.updateUser(user1);
+        }
+    }
 }

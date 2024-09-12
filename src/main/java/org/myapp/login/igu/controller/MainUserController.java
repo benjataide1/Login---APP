@@ -63,4 +63,7 @@ public class MainUserController implements Initializable {
     }
 
 
+    public void btnReload(ActionEvent actionEvent) {
+        table();
+    }
 }
